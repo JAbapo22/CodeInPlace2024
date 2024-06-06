@@ -1,0 +1,78 @@
+from karel.stanfordkarel import *
+
+"""
+Karel should fill the whole world with beepers.
+"""
+
+
+def main():
+    
+# filling row with beepers
+    #for i in range(4):
+    while front_is_clear():
+        fill_row_with_beepers() 
+
+        return_to_start_spot()
+
+        move_to_next_start_position()    
+
+# returning to the starting spot
+def return_to_start_spot():
+    turn_around()
+    while front_is_clear():
+        move()
+    
+"""
+# defining moving to next starting position 
+def move_to_next_start_position():    
+    turn_around()
+    while front_is_clear():
+        move()
+    turn_right()
+    
+    if front_is_blocked():
+        turn_right()
+        move_to_wall()
+        
+    move()
+    turn_right()    
+"""
+# moving to the next starting spot
+def move_to_next_start_position():
+    if right_is_blocked():
+        turn_around()
+        move_to_wall()
+    else:
+        turn_right()
+        move()
+        turn_right()
+
+
+
+# defining fill row with beepers    
+def fill_row_with_beepers():
+    while front_is_clear():
+        put_beeper()
+        move()
+    put_beeper()
+
+# defining turn right
+def turn_right():
+    for i in range(3):
+        turn_left()
+
+# defining turn around
+def turn_around():
+    for i in range(2):
+        turn_left()
+
+def move_to_wall():
+    while front_is_clear():
+        move()
+
+
+    
+
+# There is no need to edit code beyond this point
+if __name__ == '__main__':
+    main()
